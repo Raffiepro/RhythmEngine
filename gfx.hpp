@@ -6,7 +6,7 @@
 static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
 
-const int width=640, height=360;
+const int width=1280, height=720;
 float deltaTime = 1.f;
 
 enum class Input {
@@ -19,6 +19,11 @@ enum class Input {
 };
 Input input;
 
+static const bool* keys = SDL_GetKeyboardState(NULL);
+bool keyHeld(SDL_Scancode key) {
+    return keys[key];
+}
+
 void gfxInit(const char* name) {
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         std::cerr<<"SDL failed to init video";
@@ -28,6 +33,7 @@ void gfxInit(const char* name) {
         std::cerr<<"SDL failed to create window and renderer";
         exit(-2);
     }
+    //SDL_SetDefaultTextureScaleMode(renderer, SDL_SCALEMODE_NEAREST);
     SDL_SetRenderLogicalPresentation(renderer, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
     TTF_Init();
 }
