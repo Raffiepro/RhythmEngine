@@ -12,14 +12,14 @@ void loadStageAssets() {
     testdude = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_DestroySurface(surface);
 
-    surface = SDL_LoadPNG("assets/images/arrows.png");
+    surface = SDL_LoadPNG("assets/images/fnf_arrows.png");
     if (!surface) {
         SDL_Log("Failed to load PNG: %s", SDL_GetError());
     }
     arrowsUnlit = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_DestroySurface(surface);
 
-    surface = SDL_LoadPNG("assets/images/arrowsLIT.png");
+    surface = SDL_LoadPNG("assets/images/fnf_arrowsLIT.png");
     if (!surface) {
         SDL_Log("Failed to load PNG: %s", SDL_GetError());
     }
@@ -70,8 +70,8 @@ class Stage {
         src_rect.w = testdude->w/5;    src_rect.h = testdude->h;
         SDL_RenderTexture(renderer, testdude, &src_rect, &rect);
 
-        rect.x = arrowPosL;     rect.y = 0;
-        rect.w = arrowWidth;    rect.h = arrowWidth*0.375;
+        rect.x = arrowPosL;     rect.y = height-arrowWidth*0.25;
+        rect.w = arrowWidth;    rect.h = arrowWidth*0.25;
         SDL_RenderTexture(renderer, arrowsLit, NULL, &rect);
         rect.x = arrowPosR;
         SDL_RenderTexture(renderer, arrowsLit, NULL, &rect);
